@@ -1,19 +1,42 @@
 package com.webdriver.testeg;
 
+import java.awt.AWTException;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.Window;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.time.Duration;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import javax.imageio.ImageIO;
+
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.Color;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -26,15 +49,19 @@ public class FirstTestLeafgroundAppln {
 
 	@BeforeClass
 	public  void bf() {
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\skarthika\\eclipse-workspace\\Selenium24thAug\\src\\test\\resources\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\skarthika\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
 
 		driver =new ChromeDriver();
 
 		driver.get("https://leafground.com/dashboard.xhtml");
-		
+
 		driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+		
+		driver.switchTo().newWindow(WindowType.TAB);
+		
+		driver.navigate().to("https://leafground.com/dashboard.xhtml");
 	}
-	@Test(enabled=false)
+	@Test
 	public void dashboard() {
 
 
@@ -366,7 +393,7 @@ public class FirstTestLeafgroundAppln {
 
 	}
 
-	@Test
+	@Test(enabled=false)
 
 	public void dropdown() throws InterruptedException {
 
@@ -386,35 +413,435 @@ public class FirstTestLeafgroundAppln {
 		driver.findElement(By.xpath("//*[@class=\"ui-selectonemenu-trigger ui-state-default ui-corner-right\"]")).click();
 
 		driver.findElement(By.xpath("//*[@id=\"j_idt87:country_items\"]/li[4]")).click();
-		
+
 		Thread.sleep(1000);
-		
+
 		driver.findElement(By.xpath("//*[@id=\"j_idt87:city\"]/div[3]")).click();
-		
+
 		Thread.sleep(1000);
-		
+
 		List<WebElement> lists=driver.findElements(By.xpath("//*[@id='j_idt87:city_items']/li"));
-		
+
 		for(WebElement li:lists) {
-			
+
 			if(li.getText().equalsIgnoreCase("Chennai")) {
-				
+
 				li.click();
 			}
 		}
-		
-		
+
+
 		driver.findElement(By.xpath("//*[@id=\"j_idt87:auto-complete\"]/button")).click();
-		
+
 		Thread.sleep(1000);
-		
+
 		driver.findElement(By.xpath("//*[@class=\"ui-autocomplete-items ui-autocomplete-list ui-widget-content ui-widget ui-corner-all ui-helper-reset\"]/li[3]")).click();
-		
-		
+
+
 
 
 	}
 
+
+	@Test(enabled=false)
+
+	public void waitstt() {
+		driver.navigate().to("https://leafground.com/waits.xhtml;jsessionid=node04tinz709f9212ji8ijkypxmf470520.node0");
+
+		driver.findElement(By.id("j_idt87:j_idt89")).click();
+
+		driver.findElement(By.id("j_idt87:j_idt90")).click();
+
+
+		driver.findElement(By.id("j_idt87:j_idt92")).click();
+
+
+		FluentWait var1=new FluentWait(driver);
+
+		var1.withTimeout(Duration.ofSeconds(20))
+		.pollingEvery(Duration.ofSeconds(5))
+		.ignoring(Exception.class);
+
+		var1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("j_idt87:j_idt93")));
+
+
+
+		WebDriverWait var=new WebDriverWait(driver,Duration.ofSeconds(20));
+
+		var.until(ExpectedConditions.alertIsPresent());
+
+		//System.out.println(status);
+
+
+	}
+
+	@Test(enabled=false)
+	public void alerts1() throws InterruptedException, IOException {
+		driver.navigate().to("https://leafground.com/alert.xhtml");
+
+		driver.findElement(By.id("j_idt88:j_idt91")).click();
+
+		Alert alert1=driver.switchTo().alert();
+
+		System.out.println(alert1.getText());
+		
+		
+
+		alert1.accept();
+
+		driver.findElement(By.id("j_idt88:j_idt93")).click();
+
+		driver.switchTo().alert().dismiss();
+
+		driver.findElement(By.id("j_idt88:j_idt104")).click();
+
+		Alert alert2=	driver.switchTo().alert();
+
+		alert2.sendKeys("HCL");
+
+		alert2.accept();
+
+
+		driver.findElement(By.id("j_idt88:j_idt95")).click();
+
+		driver.findElement(By.id("j_idt88:j_idt98")).click();
+
+		driver.findElement(By.id("j_idt88:j_idt100")).click();
+
+		Thread.sleep(10000);
+
+		//((JavascriptExecutor)driver).executeScript("document.querySelector('.ui-icon-closethick',':before').click()");
+
+
+		driver.findElement(By.xpath("//*[@id='j_idt88:j_idt101']/div[1]/a/span")).click();
+
+
+	}
+
+	@Test (enabled=false)
+	public void frames1() {
+		driver.navigate().to("https://leafground.com/frame.xhtml");
+
+		driver.switchTo().frame(0);
+
+		driver.findElement(By.id("Click")).click();
+
+		driver.switchTo().defaultContent();
+
+		WebElement el=driver.findElement(By.xpath("//*[@src=\"page.xhtml\"]"));
+
+		driver.switchTo().frame(el);
+
+		driver.switchTo().frame("frame2");
+
+		driver.findElement(By.id("Click")).click();
+
+		//driver.switchTo().parentFrame();
+
+		driver.switchTo().defaultContent();
+
+		List<WebElement> frames=driver.findElements(By.tagName("iframe"));
+
+		System.out.println(frames.size());
+
+
+
+
+
+
+
+
+	}
+
+
+	@Test(enabled=false)
+	public void auth1() throws InterruptedException, AWTException {
+		driver.navigate().to("https://leafground.com/auth.xhtml");
+
+		//driver.findElement(By.id("j_idt88:j_idt90")).click();
+
+		driver.get("http://leafground.com:8090/login");
+
+		String username="admin";
+
+		StringSelection sec=new StringSelection(username);
+
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sec, null);
+
+		Robot r1=new Robot();
+
+		r1.keyPress(KeyEvent.VK_CONTROL);
+
+		r1.keyPress(KeyEvent.VK_V);
+
+		String pswd="testleaf";
+
+		StringSelection sec1=new StringSelection(pswd);
+
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sec1, null);
+
+		r1.keyRelease(KeyEvent.VK_V);
+
+		r1.keyRelease(KeyEvent.VK_CONTROL);
+
+		r1.keyPress(KeyEvent.VK_TAB);
+
+		r1.keyRelease(KeyEvent.VK_TAB);
+
+
+		r1.keyPress(KeyEvent.VK_CONTROL);
+
+		r1.keyPress(KeyEvent.VK_V);
+
+		r1.keyRelease(KeyEvent.VK_V);
+
+		r1.keyRelease(KeyEvent.VK_CONTROL);
+
+		r1.keyPress(KeyEvent.VK_ENTER);
+
+		r1.keyRelease(KeyEvent.VK_ENTER);
+
+
+
+
+
+
+
+		//	driver.get("http://admin:testleaf@leafground.com:8090/login");
+
+		//Thread.sleep(1000);
+
+		//	String msg=driver.findElement(By.tagName("body")).getText();
+
+		//System.out.println(msg);
+
+
+	}
+
+
+	@Test(enabled=false)
+	public void windows() {
+		driver.navigate().to("https://leafground.com/window.xhtml;jsessionid=node010qifmvoiuqdj27a5hwgj1hjg474068.node0");
+
+		System.out.println(driver.getTitle());
+
+		driver.findElement(By.id("j_idt88:new")).click();
+
+		Set<String> windowvalues=driver.getWindowHandles();
+
+
+		Iterator<String> iter=windowvalues.iterator();
+
+		String w1=iter.next();
+
+		String w2=iter.next();
+
+		System.out.println(w1);
+
+		System.out.println(w2);
+
+		driver.switchTo().window(w2);
+
+
+		System.out.println(driver.getTitle());
+
+		driver.close();
+		driver.switchTo().window(w1);
+
+		System.out.println(driver.getTitle());
+
+
+	}
+
+
+	@Test(enabled=false)
+	public void drag1() throws InterruptedException {
+		driver.navigate().to("https://leafground.com/drag.xhtml");
+
+		Actions act=new Actions(driver);
+
+		WebElement source= driver.findElement(By.id("form:conpnl_header"));
+
+		act.dragAndDropBy(source,250,0).perform();
+
+		WebElement source1=	driver.findElement(By.id("form:drag_content"));
+
+		WebElement dest=driver.findElement(By.id("form:drop_content"));
+
+		act.dragAndDrop(source1, dest).perform();
+
+
+		WebElement columdrag=driver.findElement(By.xpath("//*[@id=\"form:j_idt94:j_idt95\"]"));
+
+		WebElement columndrop=driver.findElement(By.xpath("//*[@id=\"form:j_idt94:j_idt97\"]"));
+
+		act.dragAndDrop(columdrag, columndrop).perform();
+
+		Thread.sleep(10000);
+
+
+
+
+		WebElement el=driver.findElement(By.xpath("//*[@id=\"form:logo\"]"));
+
+		act.clickAndHold(el).moveByOffset(150, 0).perform();
+
+		driver.navigate().to("https://www.hcltech.com/");
+
+		WebElement ind=driver.findElement(By.linkText("Industries"));
+		act.moveToElement(ind).perform();
+
+
+
+
+
+
+	}
+
+
+	@Test(enabled=false)
+	public void table() {
+
+		driver.navigate().to("https://leafground.com/table.xhtml");
+
+		List<WebElement> rows=driver.findElements(By.xpath("//*[@role='grid']/tbody/tr"));
+
+		System.out.println(rows.size());
+
+		List<WebElement> column=driver.findElements(By.xpath("//*[@role='grid']/tbody/tr/td"));
+
+		System.out.println(column.size());
+
+		for(WebElement column1 :column) {
+
+			System.out.println(column1.getText());
+		}
+
+		driver.findElement(By.xpath("//*[@role='grid']/thead/tr[1]/th[4]")).click();
+
+
+
+
+
+	}
+
+	@Test(enabled=false)
+	public void list() {
+
+		driver.navigate().to("https://leafground.com/list.xhtml;jsessionid=node0hzdex8v6oc0x1ay9mutz2fbrw478461.node0");
+
+		List<WebElement> list1=driver.findElements(By.xpath("//ul[@class='ui-widget-content ui-picklist-list ui-picklist-source ui-corner-bottom ui-sortable']/li"));
+
+		System.out.println(list1.size());
+
+
+		for(WebElement ele:list1) {
+
+			if(ele.getText().equalsIgnoreCase("Paris")) {
+
+				ele.click();
+
+			}
+		}
+
+		driver.findElement(By.xpath("//*[@title='Add']")).click();
+
+		List<WebElement> list2=driver.findElements(By.xpath("//*[@class='ui-widget-content ui-orderlist-list ui-corner-bottom ui-sortable']/li"));
+
+
+		Actions act2=new Actions(driver);
+
+		act2.keyDown(Keys.CONTROL)
+		.click(list2.get(0))
+		.click(list2.get(2))
+		.click(list2.get(4)).build().perform();
+
+	}
+
+	@Test(enabled=false)
+	public void fileuploadanddownload() throws AWTException, InterruptedException {
+		driver.navigate().to("https://leafground.com/file.xhtml");
+
+		driver.findElement(By.id("j_idt88:j_idt89_input")).sendKeys("C:\\Users\\skarthika\\OneDrive - HCL Technologies Ltd\\All backup1\\Desktop\\Hands-on - Selenium 24th Aug 2023.txt");
+
+
+		driver.findElement(By.id("j_idt93:j_idt95")).click();
+
+		File fi=new File("C:\\Users\\skarthika\\Downloads");
+
+		File[] listfiles=	fi.listFiles();
+
+		for(File search: listfiles) {
+
+			if(search.getName().equalsIgnoreCase("TestLeaf Logo (17).png")) {
+
+				System.out.println("File downloaded");
+			}
+		}
+
+		/*driver.navigate().to("https://www.adobe.com/in/acrobat/online/word-to-pdf.html");
+
+		//js.executeScript("scroll(0,750)");
+
+		driver.findElement(By.id("lifecycle-nativebutton")).click();
+
+		Robot r1=new Robot();
+
+		String filepath="C:\\Users\\skarthika\\OneDrive - HCL Technologies Ltd\\All backup1\\Desktop\\Javascript.docx";
+
+		StringSelection sec=new StringSelection(filepath);
+
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sec,null);
+
+		Thread.sleep(10000);
+
+		r1.keyPress(KeyEvent.VK_CONTROL);
+		r1.keyPress(KeyEvent.VK_V);
+		r1.keyRelease(KeyEvent.VK_V);
+		r1.keyRelease(KeyEvent.VK_CONTROL);
+		r1.keyPress(KeyEvent.VK_ENTER);
+		r1.keyRelease(KeyEvent.VK_ENTER);
+
+		 */
+
+
+	}
+
+	@Test(enabled=false)
+	public void screenshot() throws IOException, AWTException {
+
+		driver.navigate().to("https://leafground.com/charts.xhtml");
+
+		TakesScreenshot ts=(TakesScreenshot) driver;
+
+		File Source=	ts.getScreenshotAs(OutputType.FILE);
+
+        File dest=new File("src//test//resources//screen1.png");
+        
+        FileHandler.copy(Source, dest);
+        
+        
+        Robot r1=new Robot();
+        
+        
+       java.awt.Dimension di= Toolkit.getDefaultToolkit().getScreenSize();
+        
+        Rectangle rect=new Rectangle(di);
+        
+       BufferedImage source= r1.createScreenCapture(rect);
+       
+       File dest1=new File("src//test//resources//screen2.png");
+       
+       ImageIO.write(source,"png",dest1);
+       
+       
+       
+       
+        
+        
+
+
+	}
 
 	@AfterClass
 

@@ -49,7 +49,7 @@
               <ul>
                 <li>
                   <a href="#" class="navigator-link " panel-name="test-xml-Default_suite">
-                    <span>C:\Users\skarthika\AppData\Local\Temp\testng-eclipse-1653924563\testng-customsuite.xml</span>
+                    <span>C:\Users\skarthika\AppData\Local\Temp\testng-eclipse-1382491858\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -102,7 +102,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="MyGridDemo" hash-for-method="testlogin">testlogin</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="com.webdriver.testeg.FirstTestLeafgroundAppln" hash-for-method="dashboard">dashboard</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -120,26 +120,22 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">MyGridDemo</span>
+              <span class="class-name">com.webdriver.testeg.FirstTestLeafgroundAppln</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="testlogin">
-                  </a> <!-- testlogin -->
-                  <span class="method-name">testlogin</span>
-                  <div class="stack-trace">org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure. 
-Host info: host: &apos;LP-5CD2081L0B&apos;, ip: &apos;192.168.1.101&apos;
-Build info: version: &apos;4.12.0&apos;, revision: &apos;249f2a7d1b*&apos;
-System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_321&apos;
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Command: [null, newSession {capabilities=[Capabilities {browserName: chrome, platformName: windows}]}]
-Capabilities {browserName: chrome, platformName: windows}
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:620)
-	at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:236)
-	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:163)
-	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:143)
-	at MyGridDemo.testlogin(MyGridDemo.java:39)
+                  <a name="dashboard">
+                  </a> <!-- dashboard -->
+                  <span class="method-name">dashboard</span>
+                  <div class="stack-trace">java.lang.AssertionError: expected [Dashboard] but found [Dashboard1]
+	at org.testng.Assert.fail(Assert.java:93)
+	at org.testng.Assert.failNotEquals(Assert.java:512)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:134)
+	at org.testng.Assert.assertEquals(Assert.java:115)
+	at org.testng.Assert.assertEquals(Assert.java:189)
+	at org.testng.Assert.assertEquals(Assert.java:199)
+	at com.webdriver.testeg.FirstTestLeafgroundAppln.dashboard(FirstTestLeafgroundAppln.java:73)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -165,36 +161,6 @@ Capabilities {browserName: chrome, platformName: windows}
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: java.lang.RuntimeException: NettyHttpHandler request execution error
-	at org.openqa.selenium.remote.http.netty.NettyHttpHandler.makeCall(NettyHttpHandler.java:76)
-	at org.openqa.selenium.remote.http.AddSeleniumUserAgent.lambda$apply$0(AddSeleniumUserAgent.java:42)
-	at org.openqa.selenium.remote.http.Filter.lambda$andFinally$1(Filter.java:55)
-	at org.openqa.selenium.remote.http.netty.NettyHttpHandler.execute(NettyHttpHandler.java:48)
-	at org.openqa.selenium.remote.http.netty.NettyClient.execute(NettyClient.java:96)
-	at org.openqa.selenium.remote.tracing.TracedHttpClient.execute(TracedHttpClient.java:54)
-	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:115)
-	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:96)
-	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:68)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:163)
-	at org.openqa.selenium.remote.TracedCommandExecutor.execute(TracedCommandExecutor.java:51)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
-	... 29 more
-Caused by: java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException: Request timeout to 172.178.16.7/172.178.16.7:4444 after 180000 ms
-	at java.util.concurrent.CompletableFuture.reportGet(Unknown Source)
-	at java.util.concurrent.CompletableFuture.get(Unknown Source)
-	at org.asynchttpclient.netty.NettyResponseFuture.get(NettyResponseFuture.java:206)
-	at org.openqa.selenium.remote.http.netty.NettyHttpHandler.makeCall(NettyHttpHandler.java:59)
-	... 40 more
-Caused by: java.util.concurrent.TimeoutException: Request timeout to 172.178.16.7/172.178.16.7:4444 after 180000 ms
-	at org.asynchttpclient.netty.timeout.TimeoutTimerTask.expire(TimeoutTimerTask.java:43)
-	at org.asynchttpclient.netty.timeout.RequestTimeoutTimerTask.run(RequestTimeoutTimerTask.java:50)
-	at io.netty.util.HashedWheelTimer$HashedWheelTimeout.run(HashedWheelTimer.java:715)
-	at io.netty.util.concurrent.ImmediateExecutor.execute(ImmediateExecutor.java:34)
-	at io.netty.util.HashedWheelTimer$HashedWheelTimeout.expire(HashedWheelTimer.java:703)
-	at io.netty.util.HashedWheelTimer$HashedWheelBucket.expireTimeouts(HashedWheelTimer.java:790)
-	at io.netty.util.HashedWheelTimer$Worker.run(HashedWheelTimer.java:503)
-	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
-	at java.lang.Thread.run(Unknown Source)
 
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
@@ -204,7 +170,7 @@ Caused by: java.util.concurrent.TimeoutException: Request timeout to 172.178.16.
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\skarthika\AppData\Local\Temp\testng-eclipse-1653924563\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\skarthika\AppData\Local\Temp\testng-eclipse-1382491858\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -213,7 +179,7 @@ Caused by: java.util.concurrent.TimeoutException: Request timeout to 172.178.16.
 &lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;Default suite&quot;&gt;
   &lt;test verbose=&quot;2&quot; name=&quot;Default test&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;MyGridDemo&quot;/&gt;
+      &lt;class name=&quot;com.webdriver.testeg.FirstTestLeafgroundAppln&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -255,14 +221,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'testlogin')
-data.setCell(0, 2, 'MyGridDemo')
-data.setCell(0, 3, 182645);
+data.setCell(0, 1, 'dashboard')
+data.setCell(0, 2, 'com.webdriver.testeg.FirstTestLeafgroundAppln')
+data.setCell(0, 3, 24);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 3 minutes</span>
+              <span class="suite-total-time">Total running time: 24 ms</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -277,9 +243,48 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">0 ignored methods</span>
+            <span class="header-content">17 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.webdriver.testeg.FirstTestLeafgroundAppln</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">drag1</span>
+                <br/>
+                <span class="ignored-method-name">datepicker</span>
+                <br/>
+                <span class="ignored-method-name">screenshot</span>
+                <br/>
+                <span class="ignored-method-name">list</span>
+                <br/>
+                <span class="ignored-method-name">dropdown</span>
+                <br/>
+                <span class="ignored-method-name">windows</span>
+                <br/>
+                <span class="ignored-method-name">textbox</span>
+                <br/>
+                <span class="ignored-method-name">radiobtns</span>
+                <br/>
+                <span class="ignored-method-name">fileuploadanddownload</span>
+                <br/>
+                <span class="ignored-method-name">frames1</span>
+                <br/>
+                <span class="ignored-method-name">auth1</span>
+                <br/>
+                <span class="ignored-method-name">links</span>
+                <br/>
+                <span class="ignored-method-name">btns</span>
+                <br/>
+                <span class="ignored-method-name">table</span>
+                <br/>
+                <span class="ignored-method-name">checkboxes</span>
+                <br/>
+                <span class="ignored-method-name">waitstt</span>
+                <br/>
+                <span class="ignored-method-name">alerts1</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="chronological-Default_suite" class="panel">
@@ -288,13 +293,21 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">MyGridDemo</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.webdriver.testeg.FirstTestLeafgroundAppln</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">bf</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-class before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">testlogin</span>
-                <span class="method-start">0 ms</span>
+                <span class="method-name">dashboard</span>
+                <span class="method-start">13938 ms</span>
               </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">af</span>
+                <span class="method-start">13967 ms</span>
+              </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->

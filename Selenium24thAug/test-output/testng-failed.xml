@@ -3,11 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="MyGridDemo">
+      <class name="com.webdriver.testeg.FirstTestLeafgroundAppln">
         <methods>
-          <include name="testlogin"/>
+          <include name="dashboard"/>
+          <include name="bf"/>
+          <include name="af"/>
         </methods>
-      </class> <!-- MyGridDemo -->
+      </class> <!-- com.webdriver.testeg.FirstTestLeafgroundAppln -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
